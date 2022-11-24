@@ -1,0 +1,43 @@
+## Workflowr setup
+# LIFE4138 Practical
+
+# clear your environment
+rm(list = ls())
+
+# install and load workflowr
+# install.packages("workflowr")
+library(workflowr)
+
+# configure git - only necessary once
+wflow_git_config(user.name = "username", 
+                 user.email = "user@email.com", overwrite = TRUE)
+# replace username and user email with your own!
+
+
+# Start a workflowr project
+wflow_start("myworkflowr_test")
+# nb this will create a directory within your working directory
+
+# build the site
+wflow_build()
+
+# check the status
+wflow_status()
+
+# publish the website and all files
+wflow_publish(files = "analysis/*.Rmd", message = "Publish initial files for my project")
+
+# check workflow status again
+wflow_status()
+
+# put code on github
+wflow_use_github("username")
+# replace with your own
+# when prompted fwith a choice, choose 1 and in your browser, choose to allow R to access github
+
+# push code to github - dry run just allows you to see what code will do
+wflow_git_push(dry_run = TRUE)
+wflow_git_push()
+# nb - this might not actually work via R so you will need to open a terminal, navigate to your
+# working directory and type 'git push -u origin master'
+
